@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('contact_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('bio');
-            $table->string('photo');
-            $table->string('fb')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('map')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
-            $table->string('twiter')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('contact_details');
     }
 };

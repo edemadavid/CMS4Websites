@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('project_cats', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('desc')->nullable();
             $table->timestamps();
         });
     }
