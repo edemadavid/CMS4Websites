@@ -42,9 +42,9 @@
         <div id="homepage" class="collapse" aria-labelledby="homepage" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Homepage Contents:</h6>
-                <a class="collapse-item" href="buttons.html">Sliders</a>
-                <a class="collapse-item" href="cards.html">Service</a>
-                <a class="collapse-item" href="cards.html">About</a>
+                <a class="collapse-item" href="{{route('admin.frontpage.slider')}}">Sliders</a>
+                <a class="collapse-item" href="{{route('admin.frontpage.services')}}">Service</a>
+                <a class="collapse-item" href="{{route('admin.frontpage.about')}}">About</a>
             </div>
         </div>
         <a class="nav-link " href="#">

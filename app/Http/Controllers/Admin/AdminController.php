@@ -26,4 +26,64 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function getAbout()
+    {
+        return view('admin.about');
+    }
+
+    public function postAbout(Request $request, $id)
+    {
+        return back();
+    }
+
+    public function getTeams()
+    {
+        return view('admin.teams');
+    }
+
+    public function postTeam(Request $request, $id)
+    {
+        return back();
+    }
+
+    public function getServices()
+    {
+        return view('admin.services');
+    }
+
+    public function postServices(Request $request, $id)
+    {
+        return back();
+    }
+
+    public function getTestimonials()
+    {
+        return view('admin.testimonials');
+    }
+
+    public function postTestimonials(Request $request, $id)
+    {
+        return back();
+    }
+
+    public function getFaq()
+    {
+        return view('admin.faqs');
+    }
+
+    public function postFaq(Request $request, $id)
+    {
+        return back();
+    }
+
+    public function getClients()
+    {
+        return view('admin.clients');
+    }
+
+    public function postClients(Request $request, $id)
+    {
+        return back();
+    }
 }

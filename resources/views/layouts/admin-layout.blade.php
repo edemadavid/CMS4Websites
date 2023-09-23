@@ -18,6 +18,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset ('AdminAssets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @yield('extraCSS')
 </head>
 
 <body id="page-top">
@@ -165,9 +166,6 @@
                 </nav>
                 <!-- End of Topbar -->
 
-
-
-
                 @yield('contents')
             </div>
             <!-- End of Main Content -->
@@ -228,10 +226,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset ('AdminAssets/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset ('AdminAssets/vendor/chart.js/Chart.min.js') }}"></script>
-    <!-- Page level custom scripts -->
-    <script src="{{ asset ('AdminAssets/js/demo/chart-area-demo.js') }}"></script>
+    @yield('extraJS')
+
 </body>
 
 </html>
