@@ -47,11 +47,11 @@
                 <a class="collapse-item" href="{{route('admin.frontpage.about')}}">About</a>
             </div>
         </div>
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="{{route('admin.about')}}">
             <i class="fas fa-fw fa-cog"></i>
             <span>About</span>
         </a>
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="{{route('admin.teams.index')}}">
             <i class="fas fa-fw fa-cog"></i>
             <span>Teams</span>
         </a>
@@ -62,10 +62,10 @@
         <div id="components" class="collapse" aria-labelledby="components" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Other Components:</h6>
-                <a class="collapse-item" href="buttons.html">Services</a>
-                <a class="collapse-item" href="cards.html">Testimonials</a>
-                <a class="collapse-item" href="cards.html">Faqs</a>
-                <a class="collapse-item" href="cards.html">Partners/Clients</a>
+                <a class="collapse-item" href="{{route('admin.services.index')}}">Services</a>
+                <a class="collapse-item" href="{{route('admin.testimonials.index')}}">Testimonials</a>
+                <a class="collapse-item" href="{{route('admin.faqs.index')}}">Faqs</a>
+                <a class="collapse-item" href="{{route('admin.clients.index')}}">Partners/Clients</a>
             </div>
         </div>
 
@@ -82,9 +82,9 @@
         <div id="blogs" class="collapse" aria-labelledby="blogs" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Blog Components:</h6>
-                <a class="collapse-item" href="buttons.html">Blog Category</a>
-                <a class="collapse-item" href="cards.html">Blog Post</a>
-                <a class="collapse-item" href="cards.html">Comments</a>
+                <a class="collapse-item" href="{{route('admin.blogcategories.index')}}">Blog Category</a>
+                <a class="collapse-item" href="{{ route('admin.blogpost.index')}}">Blog Post</a>
+                <a class="collapse-item" href="{{ route('admin.blog.comments')}}">Comments</a>
             </div>
         </div>
 
@@ -100,14 +100,14 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('admin.contactdetails.index')}}">
             <i class="fas fa-fw fa-folder"></i>
             <span>Contact Details</span>
         </a>
 
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('admin.contactmessages.index')}}">
             <i class="fas fa-fw fa-folder"></i>
             <span>Contact Message</span>
         </a>

@@ -64,7 +64,7 @@ class ContactDetailController extends Controller
 
         }
 
-        return redirect()->route('contactdetails.index');
+        return back()->with('success, Cantact Details have been updated successfully');
     }
 
     /**

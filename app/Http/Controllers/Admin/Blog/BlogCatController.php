@@ -42,7 +42,7 @@ class BlogCatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=> 'required|unique:blog_categories',
+            'title'=> 'required|unique:blog_cats',
             'desc' => ''
         ]);
 
@@ -99,7 +99,7 @@ class BlogCatController extends Controller
 
         $blogCategory->save();
 
-        return redirect()->route('blog.category.show', $id);
+        return redirect()->route('admin.blogcategories.show', $id);
     }
 
     /**
@@ -122,6 +122,6 @@ class BlogCatController extends Controller
 
         $blogCategory->delete();
 
-        return redirect()->route('blog.categories');
+        return redirect()->route('admin.blogcategories.index');
     }
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class BlogComment extends Model
 {
     use HasFactory;
+
+    public function blog()
+    {
+        return $this->hasone(BlogPost::class, 'id', 'blog_id');
+    }
 }

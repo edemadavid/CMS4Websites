@@ -19,7 +19,7 @@ class BlogCommentController extends Controller
         $approvedComments = BlogComment::where('is_approved','=','1')->with('blog')->get();
         $rejectedComments = BlogComment::where('is_approved','=','2')->with('blog')->get();
 
-        return (view('admin.blog.comments', compact('pendingComments', 'approvedComments', 'rejectedComments')));
+        return view('admin.blog.comments', compact('pendingComments', 'approvedComments', 'rejectedComments'));
 
     }
 

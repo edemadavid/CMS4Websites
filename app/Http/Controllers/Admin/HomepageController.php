@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Services;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -84,7 +85,7 @@ class HomepageController extends Controller
     // Function to display the About page
     public function getAbout()
     {
-        $about = Services::where('page', 'homepage')->get();
+        $about = About::where('page', 'homepage')->first();
 
         return view('admin.homepage.about', compact('about'));
     }
@@ -92,11 +93,9 @@ class HomepageController extends Controller
     // Function to update the About page
     public function postAbout(Request $request, $id)
     {
-        $service = Services::find($id);
+        $service = About::find($id);
 
-        $service->h1 = $request->h1;
-        $service->p = $request->p;
-        $service->icon = $request->icon;
+        $service->h1 = $request->content;
 
         $service->save();
 
