@@ -19,9 +19,9 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        $productCategory = ProductCategory::all();
+        $productCategories = ProductCategory::all();
 
-        return view('admin.shop.productCategories', compact('productCategory'));
+        return view('admin.shop.productCategories', compact('productCategories'));
     }
 
     /**

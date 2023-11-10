@@ -102,7 +102,7 @@
                 <h6 class="collapse-header">Shop:</h6>
                 <a class="collapse-item" href="{{route('admin.productcategories.index')}}">Product Category</a>
                 <a class="collapse-item" href="{{ route('admin.products.index')}}">Products</a>
-                <a class="collapse-item" href="{{ route('admin.blog.comments')}}"></a>
+                <a class="collapse-item" href="{{ route('admin.blog.comments')}}">Review</a>
             </div>
         </div>
 
