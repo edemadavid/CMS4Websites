@@ -100,7 +100,7 @@ Route::controller(AdminController::class)
     Route::resource('testimonials', TestimonialController::class);
 
 
-    Route::resource('product.categories', ProductCategoryController::class);
+    Route::resource('productcategories', ProductCategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('product.reviews', ProductReviewController::class);
     Route::resource('product.ratings', ProductRatingController::class);

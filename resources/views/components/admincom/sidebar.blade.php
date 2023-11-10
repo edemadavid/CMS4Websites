@@ -90,6 +90,24 @@
 
     </li>
 
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#shop" aria-expanded="true" aria-controls="blogs">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Shop</span>
+        </a>
+        <div id="shop" class="collapse" aria-labelledby="shop" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Shop:</h6>
+                <a class="collapse-item" href="{{route('admin.productcategories.index')}}">Product Category</a>
+                <a class="collapse-item" href="{{ route('admin.products.index')}}">Products</a>
+                <a class="collapse-item" href="{{ route('admin.blog.comments')}}"></a>
+            </div>
+        </div>
+
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

@@ -175,17 +175,17 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset ('AdminAssets/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset ('AdminAssets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('AdminAssets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('AdminAssets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <!-- <script src="{{ asset ('AdminAssets/vendor/jquery-easing/jquery.easing.min.js') }}"></script> -->
+    <script src="{{ asset ('AdminAssets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <!-- jQuery UI -->
     <!-- <script src="{{asset('AdminAssets/vendor/jquery-ui/jquery-ui.min.js') }}"></script> -->
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset ('AdminAssets/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('AdminAssets/js/sb-admin-2.min.js') }}"></script>
 
-    <script src="{{asset('AdminAssets/vendor/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('AdminAssets/vendor/toastr/toastr.min.js') }}"></script>
 
     @if(Session::has('success'))
     <script>
