@@ -10,4 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function productCategory()
+    {
+        return $this->hasone(BlogCat::class, 'id', 'category_id');
+    }
 }

@@ -1,7 +1,21 @@
 @extends('layouts.admin-layout')
 
 
+@section('extraCSS')
+<link rel="stylesheet" href="{{asset('AdminAssets/vendor/summernote/summernote-bs4.min.css')}}">
+@endsection
+
+
 @section('extraJS')
+<script src="{{asset('AdminAssets/vendor/summernote/summernote-bs4.min.js')}}"></script>
+
+<script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    });
+</script>
+
 <script src="{{ asset('AdminAssets/vendor/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
 <script>
@@ -11,13 +25,146 @@
 </script>
 @endsection
 
+
+
 @section('contents')
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
+        <h1>{{$productCategory->name}}</h1>
         <!-- Info boxes -->
         <div class="row">
+            <div class="col-lg-8 col-md-12 order-sm-1">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">{{$productCategory->name}} Product List</h3>
 
+                        <button type="button" class="btn btn-success d-md-none d-block" data-toggle="modal" data-target="#modal-default">
+                            New Product
+                        </button>
+
+                        <div class="modal fade" id="modal-default">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">New Product</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="catTitle">Title</label>
+                                                    <input type="text" class="form-control" name="title" id="catTitle" value="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="catDesc">Description</label>
+
+                                                    <textarea class="form-control" name="desc" id="catDesc" cols="30" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Product Name</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Discount Price</th>
+                                    <th>Main Image</th>
+                                    <th style="width: 40px">View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $i = 1 @endphp
+                                @forelse ($products as $product)
+                                <tr>
+                                    <td>{{$i++}}.</td>
+                                    <td>{{$product->name}}</td>
+                                    <td></td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td><img src="{{ asset('images/'.$product->main_image) }}" alt="" srcset=""></td>
+                                    <td><a href="">view</a></td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" style="text-align: center">No Product Found</td>
+                                </tr>
+
+                                @endforelse
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+
+            <div class="d-lg-block d-md-none col-md-4 order-sm-0">
+                <form method="post" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
+                    <input type="hidden" name="product_category_id" value="{{$productCategory->id}}">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Product Name</label>
+                                <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="price">Price</label>
+                                    <input type="number" class="form-control" name="price" id="price" value="{{old('price')}}">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="discount_price">Discount Price</label>
+                                    <input type="number" class="form-control" name="discount_price" id="discount_price" value="{{old('discount_price')}}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="short_desc">Short Description</label>
+                                <textarea class="form-control" name="short_desc" id="short_desc" cols="30" rows="3">{{old('short_desc')}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="long_desc">Main Description</label>
+                                <textarea class="form-control" name="long_desc" id="summernote" cols="30" rows="3">{{old('long_desc')}}</textarea>
+                            </div>
+
+                            <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="File">
+                                <label class="custom-file-label" for="File">Select a display picture</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </div>

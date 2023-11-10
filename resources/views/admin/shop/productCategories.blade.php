@@ -2,13 +2,7 @@
 
 
 @section('extraJS')
-<script src="{{ asset('AdminAssets/vendor/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
-<script>
-    $(function() {
-        bsCustomFileInput.init();
-    });
-</script>
 @endsection
 
 @section('contents')
@@ -17,8 +11,8 @@
     <div class="container-fluid">
         <h1>Product Categories</h1>
         <!-- Info boxes -->
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row d-flex">
+            <div class="col-md-8 col-12 order-sm-1">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">Category List</h3>
@@ -44,8 +38,8 @@
                                 @forelse ($productCategories as $productCategory)
                                 <tr>
                                     <td>{{$i++}}.</td>
-                                    <td>{{$productCategory->title}}</td>
-                                    <td>{{$productCategory->product->count()}}</td>
+                                    <td>{{$productCategory->name}}</td>
+                                    <td>{{$productCategory->products->count()}}</td>
                                     <td><a href="{{route('admin.productcategories.show', $productCategory->id)}}">view</a></td>
                                 </tr>
                                 @empty
@@ -62,6 +56,37 @@
                 </div>
                 <!-- /.card -->
 
+            </div>
+
+            <div class="col-md-4 col-12 order-sm-0">
+                <form action="{{route('admin.productcategories.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="type" value="1">
+                    <div class="card">
+                        <div class="card-header">
+                            Add New Team
+                        </div>
+                        <div class="card-body">
+
+                            <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="File">
+                                <label class="custom-file-label" for="File">Choose file</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" id="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="desc">Description</label>
+                                <textarea class="form-control" name="desc" id="desc" cols="30" rows="5"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-success float-right" type="submit" name="submit">Add</button>
+                        </div>
+                </form>
             </div>
 
         </div>

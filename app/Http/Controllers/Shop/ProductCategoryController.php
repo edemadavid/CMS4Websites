@@ -64,9 +64,9 @@ class ProductCategoryController extends Controller
 
         $productCategory = new ProductCategory;
         $productCategory->name = $validatedData['name'];
-        $productCategory->slug = $validatedData['slug'];
-        $productCategory->desc = $validatedData['desc'];
-        $productCategory->img = $filename;
+        $productCategory->slug = Str::slug($request->name);
+        $productCategory->desc = $request->desc;
+        $productCategory->image = $filename;
 
 
         $saved = $productCategory->save();
