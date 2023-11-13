@@ -57,16 +57,23 @@ class ProductController extends Controller
         }
     }
 
-    public function deleteImage(Request $request){
+    public function deleteImage($id){
 
-        $image = ProductImage::find($request->id);
+        $image = ProductImage::find($id);
+
         $deleted = $image->delete();
 
-        if ($deleted){
+        if ($deleted) {
+            // Remove the image from the filesystem
+            $filePath = public_path($image->image_path);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
 
+            return response()->json(['message' => 'Image deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Unable to delete the image'], 500);
         }
-
-        return back()->with('success', 'Image deleted successfully');
     }
 
     /**

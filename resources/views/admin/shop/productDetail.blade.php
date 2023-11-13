@@ -2,6 +2,7 @@
 
 
 @section('extraJS')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('AdminAssets/vendor/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
 <script>
@@ -11,7 +12,7 @@
 </script>
 
 <script>
-    function confirmDelete(imageId) {
+    function confirmDelete(imageId, deleteRoute) {
         if (confirm('Are you sure you want to delete this image?')) {
             deleteImage(imageId, deleteRoute);
         }
@@ -63,14 +64,14 @@
                                     <div class="others">
                                         <div class="row">
                                             @forelse($product->other_images as $image)
+                                            @php
+                                                $imageid = $image->id;
+                                            @endphp
                                             <div class="col-6 mb-3">
-                                                <div class="image-container position-relative">
+                                                <div class="image-container position-relative" id="image-{{$imageid}}">
                                                     <img src="{{asset($image->image_path)}}" class="img-fluid" alt="Other product image">
-                                                    @php
-                                                        $imageid = $image->id;
-                                                    @endphp
                                                     <a class="delete-button btn btn-danger" style="position: absolute; top: 5px; right: 5px;"
-                                                        onclick="confirmDelete({{$imageid}}, '{{ route('images.custom.delete', $imageid) }}')"
+                                                        onclick="confirmDelete({{$imageid}}, '{{ route('admin.images.custom.delete', $imageid) }}')"
                                                         >
                                                         <i class="fas fa-trash"></i></a>
                                                 </div>
