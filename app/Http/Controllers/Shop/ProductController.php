@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -19,6 +20,54 @@ class ProductController extends Controller
 
         return view('admin.shop.products', compact('products'));
     }
+    public function show($id){
+        $product = Product::find($id);
+
+        return view('admin.shop.productDetail', compact('product'));
+    }
+
+    public function upload(Request $request, $productId) {
+
+        // dd($request);
+        $validatedData = $request->validate([
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example: Image type and size validation
+        ], [
+            'images.*.image' => 'The file must be an image.',
+            'images.*.mimes' => 'Only jpeg, png, jpg, and gif images are allowed.',
+            'images.*.max' => 'The image may not be greater than 2MB.',
+        ]);
+
+
+        if($request->hasFile('images')) {
+            foreach($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images/products'), $imageName);
+
+                // Store image paths in the product_images table
+                $product_image = new ProductImage;
+                $product_image->product_id = $productId;
+                $product_image->image_path = 'images/products/' . $imageName;
+
+                $product_image->save();
+
+            }
+            return back()->with('success', 'Product updated successfully');
+        } else {
+            return back()->with('error', 'No image was updated');
+        }
+    }
+
+    public function deleteImage(Request $request){
+
+        $image = ProductImage::find($request->id);
+        $deleted = $image->delete();
+
+        if ($deleted){
+
+        }
+
+        return back()->with('success', 'Image deleted successfully');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -31,7 +80,7 @@ class ProductController extends Controller
             'long_desc' => 'required|string',
             'price' => 'required|integer',
             'discount_price' => 'integer|nullable',
-            'main_image' => 'required|string',
+            'main_image' => 'required',
         ]);
 
 
@@ -54,7 +103,10 @@ class ProductController extends Controller
 
         // Create a new Product instance and set its attributes
         $product = new Product();
+        $product->uuid = Str::uuid();
+        $product->product_category_id = $request->input('product_category_id');
         $product->name = $request->input('name');
+        $product->slug = Str::slug($request->name);
         $product->short_desc = $request->input('short_desc');
         $product->long_desc = $request->input('long_desc');
         $product->price = $request->input('price');

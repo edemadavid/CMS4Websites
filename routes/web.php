@@ -105,4 +105,7 @@ Route::controller(AdminController::class)
     Route::resource('product.reviews', ProductReviewController::class);
     Route::resource('product.ratings', ProductRatingController::class);
 
+    Route::post('/products/{productId}/upload-images', [ProductController::class, 'upload'])->name('upload.product.images');
+    Route::post('/products/{image}/delete', [ProductController::class, 'deleteImage'])->name('images.custom.delete');
+
 });

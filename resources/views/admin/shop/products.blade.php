@@ -9,11 +9,18 @@
         bsCustomFileInput.init();
     });
 </script>
-
-
 @endsection
 
 @section('contents')
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
 
+        </div>
+
+    </div>
+</section>
 
 @endsection

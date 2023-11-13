@@ -56,21 +56,10 @@
                                         <div class="modal-body">
                                             @csrf
 
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label for="catTitle">Title</label>
-                                                    <input type="text" class="form-control" name="title" id="catTitle" value="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="catDesc">Description</label>
-
-                                                    <textarea class="form-control" name="desc" id="catDesc" cols="30" rows="3"></textarea>
-                                                </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -103,12 +92,12 @@
                                     <td></td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->price}}</td>
-                                    <td><img src="{{ asset('images/'.$product->main_image) }}" alt="" srcset=""></td>
-                                    <td><a href="">view</a></td>
+                                    <td><img src="{{ asset('images/products/'.$product->main_image) }}" alt="" width="80px"></td>
+                                    <td><a href="{{route('admin.products.show', $product->id)}}">view</a></td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" style="text-align: center">No Product Found</td>
+                                    <td colspan="8" style="text-align: center">No Product Found</td>
                                 </tr>
 
                                 @endforelse
@@ -122,7 +111,7 @@
 
             </div>
 
-            <div class="d-lg-block d-md-none col-md-4 order-sm-0">
+            <div class="d-md-block d-none col-md-4 order-sm-0">
                 <form method="post" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
                     <input type="hidden" name="product_category_id" value="{{$productCategory->id}}">
                     <div class="modal-body">
@@ -154,7 +143,7 @@
                             </div>
 
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="File">
+                                <input type="file" name="main_image" class="custom-file-input" id="File">
                                 <label class="custom-file-label" for="File">Select a display picture</label>
                             </div>
                         </div>

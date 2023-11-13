@@ -17,6 +17,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset ('AdminAssets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset ('AdminAssets/css/style.css') }}" rel="stylesheet">
+
     <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('AdminAssets/vendor/toastr/toastr.min.css') }}">
     @yield('extraCSS')

@@ -1,0 +1,14 @@
+.text-center {
+    position: relative;
+    /* Other styles for the container */
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px; /* Adjust this value as needed */
+    right: 5px; /* Adjust this value as needed */
+    background: none;
+    border: none;
+    cursor: pointer;
+    /* Other styles for the button */
+}

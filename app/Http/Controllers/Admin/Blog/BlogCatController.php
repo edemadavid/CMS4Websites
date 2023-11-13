@@ -54,7 +54,7 @@ class BlogCatController extends Controller
 
         $blogCategory->save();
 
-        return redirect()->route('blog.categories');
+        return back()->with('success', 'Blog category saved successfully');
     }
 
     /**
@@ -99,7 +99,7 @@ class BlogCatController extends Controller
 
         $blogCategory->save();
 
-        return redirect()->route('admin.blogcategories.show', $id);
+        return back()->with('success', 'Blog category updated successfully');
     }
 
     /**

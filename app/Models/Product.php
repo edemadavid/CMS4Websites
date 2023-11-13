@@ -11,8 +11,16 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function productCategory()
+    public function product_category()
     {
-        return $this->hasone(BlogCat::class, 'id', 'category_id');
+        return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
     }
+
+    public function other_images() {
+        return $this->hasMany(ProductImage::class);
+    }
+    // public function product_category()
+    // {
+    //     return $this->hasone(ProductCategory::class, 'id', 'product_category_id');
+    // }
 }
