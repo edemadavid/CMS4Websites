@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Blog\BlogCatController;
 use App\Http\Controllers\Admin\Blog\BlogCommentController;
 use App\Http\Controllers\Admin\Blog\BlogPostController;
+use App\Http\Controllers\Admin\Shop\ProductCategoryController;
+use App\Http\Controllers\Admin\Shop\ProductController;
+use App\Http\Controllers\Admin\Shop\ProductRatingController;
+use App\Http\Controllers\Admin\Shop\ProductReviewController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactDetailController;
 use App\Http\Controllers\Admin\ContactMessageController;
@@ -15,10 +19,6 @@ use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\TeamsController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\FrontpageController;
-use App\Http\Controllers\Shop\ProductCategoryController;
-use App\Http\Controllers\Shop\ProductController;
-use App\Http\Controllers\Shop\ProductRatingController;
-use App\Http\Controllers\Shop\ProductReviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -102,10 +102,13 @@ Route::controller(AdminController::class)
 
     Route::resource('productcategories', ProductCategoryController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('product.reviews', ProductReviewController::class);
     Route::resource('product.ratings', ProductRatingController::class);
+
+    Route::resource('productreviews', ProductReviewController::class);
+    Route::post('product/review/{status}/{id}', [ProductReviewController::class, 'status'])->name('product.review.update');
 
     Route::post('/products/{productId}/upload-images', [ProductController::class, 'upload'])->name('upload.product.images');
     Route::post('/products/{image}/delete', [ProductController::class, 'deleteImage'])->name('images.custom.delete');
+
 
 });

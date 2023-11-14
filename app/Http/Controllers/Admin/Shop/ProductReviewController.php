@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Http\Controllers\Admin\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductReview;
@@ -13,7 +13,11 @@ class ProductReviewController extends Controller
      */
     public function index()
     {
-        //
+        $pendingReviews = ProductReview::where('status', 'pending')->get();
+        $approvedReviews = ProductReview::where('status', 'accepted')->get();
+        $rejectedReviews = ProductReview::where('status', 'rejected')->get();
+
+        return view('admin.shop.Reviews', compact('pendingReviews', 'approvedReviews', 'rejectedReviews'));
     }
 
     /**

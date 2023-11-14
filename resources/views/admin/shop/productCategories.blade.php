@@ -17,7 +17,7 @@
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">Category List</h3>
                         <div class="">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProductCat">
+                            <button type="button" class="btn btn-success d-md-none d-block" data-toggle="modal" data-target="#newProductCat">
                                 new category
                             </button>
                         </div>
@@ -58,10 +58,9 @@
 
             </div>
 
-            <div class="col-md-4 col-12 order-sm-0">
+            <div class="col-md-4 col-12 order-sm-0 d-md-block d-none">
                 <form action="{{route('admin.productcategories.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="type" value="1">
                     <div class="card">
                         <div class="card-header">
                             Add New Team

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Http\Controllers\Admin\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,9 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('admin.shop.products', compact('products'));
+        $product_categories = ProductCategory::all();
+
+        return view('admin.shop.products', compact('products', 'product_categories'));
     }
     public function show($id){
         $product = Product::find($id);
